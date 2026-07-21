@@ -106,20 +106,6 @@ or serve the frontend using VS Code Live Server.
 
 ---
 
- 📸 Screenshots
-
-Add screenshots of:
-
-- Home Page
-- Resume Analysis Dashboard
-- ATS Score
-- Interview Questions
-- Learning Roadmap
-
-*(Recommended image size: 1280×720)*
-
----
-
 🔮 Future Improvements
 
 - Resume PDF Export
