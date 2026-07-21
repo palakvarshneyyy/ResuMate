@@ -1,0 +1,11 @@
+# General
+.DS_Store
+.idea/
+.vscode/
+*.log
+.github/
+
+# Environment variables & secrets
+.env
+config.js
+application-local.properties

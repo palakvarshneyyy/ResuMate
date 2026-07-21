@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Recruiter Review</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body data-auth-required="true">
+
+<div class="container">
+
+<div class="page-auth-actions">
+    <span data-auth-email></span>
+    <button class="nav-logout" onclick="logout()">Logout</button>
+</div>
+
+<h1>👨‍💼 Recruiter Review</h1>
+
+<div class="skill-box">
+    <div id="feedbackContent"></div>
+</div>
+
+<a href="results.html" class="view-btn">
+← Back to Dashboard
+</a>
+
+</div>
+
+<script src="auth.js"></script>
+<script>
+
+const data =
+JSON.parse(
+localStorage.getItem("analysisData")
+);
+
+if (!data || !data.recruiterFeedback) {
+    document.getElementById("feedbackContent").innerHTML =
+    "<p>No recruiter review available. Please complete an analysis first.</p>";
+} else {
+
+const feedbackLines =
+data.recruiterFeedback.split(". ");
+
+let html = "<ul>";
+
+feedbackLines.forEach(line => {
+    if(line.trim() !== ""){
+        html += `<li>${line}</li>`;
+    }
+});
+
+html += "</ul>";
+
+document.getElementById("feedbackContent").innerHTML =
+html;
+
+}
+
+</script>
+
+</body>
+</html>

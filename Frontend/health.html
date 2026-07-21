@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Resume Health Report</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body data-auth-required="true">
+
+<div class="container">
+
+<div class="page-auth-actions">
+    <span data-auth-email></span>
+    <button class="nav-logout" onclick="logout()">Logout</button>
+</div>
+
+<h1>📋 Resume Health Report</h1>
+
+<div class="skill-box">
+    <div id="healthContent"></div>
+</div>
+
+<a href="results.html" class="view-btn">
+← Back to Dashboard
+</a>
+
+</div>
+
+<script src="auth.js"></script>
+<script>
+
+const data =
+JSON.parse(
+localStorage.getItem("analysisData")
+);
+
+if (!data || !data.healthReport) {
+    document.getElementById("healthContent").innerHTML =
+    "<p>No health report available. Please complete an analysis first.</p>";
+} else {
+
+const healthItems =
+data.healthReport.split("\n");
+
+let html = "<ul>";
+
+healthItems.forEach(item => {
+    if(item.trim() !== ""){
+        html += `<li>${item}</li>`;
+    }
+});
+
+html += "</ul>";
+
+document.getElementById("healthContent").innerHTML =
+html;
+
+}
+
+</script>
+
+</body>
+</html>

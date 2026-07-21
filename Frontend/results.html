@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Resume Analysis Dashboard</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="results-body" data-auth-required="true">
+
+<input type="checkbox" id="sidebarToggle" class="sidebar-toggle">
+<label for="sidebarToggle" class="sidebar-toggle-label" aria-label="Toggle sidebar">
+    <span></span>
+    <span></span>
+    <span></span>
+</label>
+
+<div class="results-shell">
+    <aside class="results-sidebar">
+        <div class="brand-block">
+            <div class="brand-mark">
+                <i data-lucide="rocket"></i>
+            </div>
+            <div>
+                <h2>ResuMate</h2>
+                <p>Career Intelligence</p>
+            </div>
+        </div>
+
+        <nav class="side-nav">
+            <a href="results.html" class="active">
+                <i data-lucide="layout-dashboard"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="index.html">
+                <i data-lucide="file-search"></i>
+                <span>Analyze Resume</span>
+            </a>
+            <a href="results.html">
+                <i data-lucide="history"></i>
+                <span>History</span>
+            </a>
+            <a href="results.html">
+                <i data-lucide="file-text"></i>
+                <span>Reports</span>
+            </a>
+            <a href="roadmap.html">
+                <i data-lucide="sparkles"></i>
+                <span>Career Insights</span>
+            </a>
+            <a href="results.html">
+                <i data-lucide="settings"></i>
+                <span>Settings</span>
+            </a>
+            <a href="#" onclick="logout()">
+                <i data-lucide="log-out"></i>
+                <span>Logout</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-card">
+            <div class="sidebar-card-title">
+                <i data-lucide="shield-check"></i>
+                <h3>Resume Health</h3>
+            </div>
+            <div id="healthReport"></div>
+        </div>
+
+        <a href="index.html" class="sidebar-cta">
+            <i data-lucide="plus-circle"></i>
+            <span>Start New Analysis</span>
+        </a>
+    </aside>
+
+    <main class="results-main">
+        <header class="results-header">
+            <div>
+                <span class="page-kicker">Candidate report</span>
+                <h1>Resume Analysis Dashboard</h1>
+                <p>Match score, ATS readiness, skill gaps, and recruiter-style feedback in one view.</p>
+            </div>
+
+            <div class="dashboard-actions">
+                <span class="dashboard-user" data-auth-email></span>
+                <a class="secondary-action" href="index.html">New Analysis</a>
+                <button id="downloadReport" class="download-btn">Download Report</button>
+            </div>
+        </header>
+
+        <section class="progress-section">
+            <div class="progress-container">
+                <div id="progressBar" class="progress-bar"></div>
+            </div>
+            <p id="progressText" class="progress-text">Starting Analysis...</p>
+        </section>
+
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-card-top">
+                    <div class="stat-icon stat-icon-blue">
+                        <i data-lucide="target"></i>
+                    </div>
+                    <div>
+                        <h3>Match Score</h3>
+                        <span class="stat-label">Role alignment</span>
+                    </div>
+                </div>
+                <div class="stat-progress">
+                    <div class="progress-ring progress-ring-blue">
+                        <span id="quickMatch">0%</span>
+                    </div>
+                </div>
+                <div class="stat-footer">
+                    <span class="mini-stat"><strong id="skillsCount">0</strong> skills found</span>
+                    <span class="status-pill status-pill-blue">Strong</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-card-top">
+                    <div class="stat-icon stat-icon-purple">
+                        <i data-lucide="file-check"></i>
+                    </div>
+                    <div>
+                        <h3>ATS Score</h3>
+                        <span class="stat-label">Resume readability</span>
+                    </div>
+                </div>
+                <div class="stat-progress">
+                    <div class="progress-ring progress-ring-purple">
+                        <span id="quickATS">0%</span>
+                    </div>
+                </div>
+                <div class="stat-footer">
+                    <span class="mini-stat"><strong id="missingCount">0</strong> gaps to improve</span>
+                    <span class="status-pill status-pill-purple">Optimized</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-card-top">
+                    <div class="stat-icon stat-icon-green">
+                        <i data-lucide="activity"></i>
+                    </div>
+                    <div>
+                        <h3>Career Readiness</h3>
+                        <span class="stat-label">Readiness overview</span>
+                    </div>
+                </div>
+                <div class="stat-progress">
+                    <div class="progress-ring progress-ring-green">
+                        <span id="careerReadiness">0%</span>
+                    </div>
+                </div>
+                <div class="stat-footer">
+                    <span class="mini-stat">Interview readiness</span>
+                    <span class="status-pill status-pill-green">Ready</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-card-top">
+                    <div class="stat-icon stat-icon-orange">
+                        <i data-lucide="briefcase"></i>
+                    </div>
+                    <div>
+                        <h3>Experience Match</h3>
+                        <span class="stat-label">Experience fit</span>
+                    </div>
+                </div>
+                <div class="stat-progress">
+                    <div class="progress-ring progress-ring-orange">
+                        <span id="careerPotential">0%</span>
+                    </div>
+                </div>
+                <div class="stat-footer">
+                    <span class="mini-stat">Growth outlook</span>
+                    <span class="status-pill status-pill-orange">Promising</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="dashboard-grid-3">
+            <div class="panel-card chart-card">
+                <h3>📊 Skill Radar</h3>
+                <canvas id="skillRadar"></canvas>
+            </div>
+
+            <div class="panel-card fit-card">
+                <h3>🎯 Career Fit</h3>
+                <div class="career-fit-list" id="careerFit">
+                    <div class="career-fit-item">
+                        <div class="career-fit-row">
+                            <span>Business Analyst</span>
+                            <strong>88%</strong>
+                        </div>
+                        <div class="career-fit-bar"><div class="career-fit-fill" style="width: 88%"></div></div>
+                    </div>
+                    <div class="career-fit-item">
+                        <div class="career-fit-row">
+                            <span>Data Analyst</span>
+                            <strong>82%</strong>
+                        </div>
+                        <div class="career-fit-bar"><div class="career-fit-fill" style="width: 82%"></div></div>
+                    </div>
+                    <div class="career-fit-item">
+                        <div class="career-fit-row">
+                            <span>Python Developer</span>
+                            <strong>76%</strong>
+                        </div>
+                        <div class="career-fit-bar"><div class="career-fit-fill" style="width: 76%"></div></div>
+                    </div>
+                    <div class="career-fit-item">
+                        <div class="career-fit-row">
+                            <span>Cloud Engineer</span>
+                            <strong>74%</strong>
+                        </div>
+                        <div class="career-fit-bar"><div class="career-fit-fill" style="width: 74%"></div></div>
+                    </div>
+                    <div class="career-fit-item">
+                        <div class="career-fit-row">
+                            <span>AI Engineer</span>
+                            <strong>70%</strong>
+                        </div>
+                        <div class="career-fit-bar"><div class="career-fit-fill" style="width: 70%"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-card verdict-card">
+                <div class="verdict-header">
+                    <div class="verdict-icon">
+                        <i data-lucide="sparkles"></i>
+                    </div>
+                    <div>
+                        <h3>AI Verdict</h3>
+                        <p>Intelligent review of your profile</p>
+                    </div>
+                </div>
+
+                <div class="verdict-body">
+                    <div class="verdict-block">
+                        <span class="verdict-label">Overall Verdict</span>
+                        <div id="recruiterFeedback" class="verdict-text">⏳ Generating verdict...</div>
+                    </div>
+
+                    <div class="verdict-block">
+                        <span class="verdict-label">Recommendation</span>
+                        <div class="verdict-recommendation">Focus on role-specific projects, strengthen ATS keywords, and keep your experience narrative concise and measurable.</div>
+                    </div>
+                </div>
+
+                <div class="mini-metrics">
+                    <div class="mini-metric">
+                        <span>Match</span>
+                        <div class="score-bar">
+                            <div id="matchBar" class="score-fill"></div>
+                        </div>
+                        <strong id="score">0%</strong>
+                    </div>
+                    <div class="mini-metric">
+                        <span>ATS</span>
+                        <div class="score-bar">
+                            <div id="atsBar" class="score-fill ats-fill"></div>
+                        </div>
+                        <strong id="atsScore">0%</strong>
+                        <p id="atsStatus">Analyzing ATS...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="dashboard-grid-3">
+            <div class="panel-card">
+                <h3>✅ Matched Skills</h3>
+                <div id="topSkills" class="tag-list"></div>
+                <div class="skill-box compact-box">
+                    <h4>Detailed Match</h4>
+                    <div id="matchedSkills">⏳ Matching skills...</div>
+                </div>
+            </div>
+
+            <div class="panel-card">
+                <h3>❌ Missing Skills</h3>
+                <div id="topMissing" class="tag-list"></div>
+                <div class="skill-box compact-box">
+                    <h4>Improvement Areas</h4>
+                    <div id="missingSkills">⏳ Finding missing skills...</div>
+                </div>
+            </div>
+
+            <div class="panel-card">
+                <h3>💡 Top Strengths</h3>
+                <div id="strengths" class="strength-list">⏳ Analyzing strengths...</div>
+                <div class="skill-box compact-box">
+                    <h4>Weaknesses</h4>
+                    <div id="weaknesses">⏳ Analyzing weaknesses...</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel-card ai-panel">
+            <div class="ai-panel-header">
+                <div>
+                    <h3>✨ AI Suggestions</h3>
+                    <p>Actionable recruiter-style guidance for your next move.</p>
+                </div>
+                <div class="role-pill" id="recommendedRoles">⏳ Finding suitable roles...</div>
+            </div>
+            <div class="ai-suggestions-card">
+                <div class="ai-suggestions-badge">AI guidance</div>
+                <div id="aiSuggestionsPanel" class="ai-suggestions">⏳ Generating suggestions...</div>
+            </div>
+            <div class="salary-insights">
+                <h4>Salary Insights</h4>
+                <div id="salaryInsights">⏳ Calculating salary range...</div>
+            </div>
+        </section>
+
+        <section class="panel-card interview-panel">
+    <div class="ai-panel-header">
+        <div>
+            <h3>🎤 Interview Questions</h3>
+            <p>Practice questions based on your resume.</p>
+        </div>
+    </div>
+
+    <div id="interviewQuestions" class="interview-list">
+        ⏳ Generating interview questions...
+    </div>
+</section>
+
+    </main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="config.js"></script>
+<script src="auth.js"></script>
+<script src="results.js"></script>
+
+</body>
+</html>

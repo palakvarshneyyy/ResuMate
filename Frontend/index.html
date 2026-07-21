@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResuMate - Career Intelligence Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+</head>
+<body data-auth-required="true">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">🚀ResuMate</div>
+        <ul>
+            <li><a href="#" onclick="goHome()">Home</a></li>
+            <li><a href="#" onclick="openFeatures()">Features</a></li>
+            <li><a href="#" onclick="openAbout()">About</a></li>
+            <li><span class="nav-user" data-auth-email></span></li>
+            <li><button class="nav-logout" onclick="logout()">Logout</button></li>
+        </ul>
+    </nav>
+
+    
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="hero-left">
+
+            <div class="hero-badge">AI-powered career intelligence</div>
+            <h1>🚀 ResuMate - Smart Career Intelligence Platform</h1>
+
+            <p class="hero-subtitle">
+                Analyze resumes, evaluate career readiness,
+                discover skill gaps, receive recruiter insights,
+                and unlock personalized growth paths.
+            </p>
+
+            <div class="hero-buttons">
+
+                <button class="primary-btn" onclick="scrollToUpload()">
+                               Upload Resume
+                </button>
+
+                <button class="secondary-btn" onclick="loadDemo()">
+                               Try Demo
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="hero-right">
+
+            <div class="dashboard-preview">
+
+                <div class="preview-card">
+                    ATS Score
+                    <h2>89%</h2>
+                </div>
+
+                <div class="preview-card">
+                    Skills Match
+                    <h2>82%</h2>
+                </div>
+
+                <div class="preview-card">
+                    Readiness
+                    <h2>91%</h2>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+    <div class="container">
+
+        <div class="home-grid">
+
+        <!-- Upload Section -->
+        <div class="card">
+
+            <div class="section-heading">
+                <span class="pill">ResuMate Analysis</span>
+                <h2>Discover Your Career Potential</h2>
+                <p>Drop in your resume and target role to get instant match insights.</p>
+            </div>
+             <label for="candidateName">
+                  Candidate Name
+             </label>
+
+        <input
+        type="text"
+        id="candidateName"
+        placeholder="Enter your full name">
+            <label>Upload Resume</label>
+
+<div id="dropArea" class="drop-area">
+
+    <div id="uploadIcon" class="upload-icon">
+        📄
+    </div>
+
+    <p id="uploadFileName">
+        Drag & Drop Resume Here
+    </p>
+
+    <span id="uploadHint">
+        PDF or DOCX up to 5MB
+    </span>
+
+    <button type="button" id="uploadResumeBtn" class="upload-btn">
+        Choose Resume
+    </button>
+
+    <div class="upload-progress" aria-hidden="true">
+        <div id="uploadProgressBar" class="upload-progress-bar"></div>
+    </div>
+
+    <div id="uploadStatus" class="upload-status"></div>
+
+    <input
+        type="file"
+        id="resume"
+        accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        hidden>
+
+</div>
+
+            <label for="jobDescription">Paste Job Description</label>
+            <textarea
+                id="jobDescription"
+                placeholder="Paste Job Description Here">
+            </textarea>
+
+            <button id="analyzeBtn">
+                Analyze Resume
+            </button>
+
+        </div>
+
+        <aside class="insight-panel">
+            <div class="panel-kicker">What you get</div>
+
+            <div class="feature-grid">
+
+    <div class="feature-card">
+
+        <div class="feature-icon">📊</div>
+
+        <h3>ATS Score</h3>
+
+        <p>
+            Evaluate ATS compatibility and keyword optimization.
+        </p>
+
+    </div>
+
+    <div class="feature-card">
+
+        <div class="feature-icon">🎯</div>
+
+        <h3>Skills Match</h3>
+
+        <p>
+            Compare resume skills against job requirements.
+        </p>
+
+    </div>
+
+    <div class="feature-card">
+
+        <div class="feature-icon">🤖</div>
+
+        <h3>AI Review</h3>
+
+        <p>
+            Receive intelligent recruiter-style feedback.
+        </p>
+
+    </div>
+
+</div>
+
+            <div class="mini-list">
+                <p>Clear match score based on required skills.</p>
+                <p>Missing skills highlighted for quick improvement.</p>
+                <p>Recruiter-style feedback with practical next steps.</p>
+                <p>Downloadable PDF report for sharing or records.</p>
+            </div>
+        </aside>
+
+        </div>
+        </div>
+
+
+    <!-- Footer -->
+    <footer>
+        <p>Powered by ResuMate • HTML • CSS • JavaScript • AI</p>
+    </footer>
+    <!-- Features Modal -->
+
+<div id="featuresModal" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close" onclick="closeFeatures()">&times;</span>
+
+        <h2>✨ Key Features</h2>
+
+        <ul>
+            <li>Resume and job match analysis</li>
+            <li>ATS score calculation</li>
+            <li>Skill gap detection</li>
+            <li>AI-powered suggestions</li>
+            <li>Career recommendations</li>
+            <li>Resume improvement insights</li>
+        </ul>
+
+    </div>
+
+</div>
+
+<!-- About Modal -->
+
+<div id="aboutModal" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close" onclick="closeAbout()">&times;</span>
+
+        <h2>📌 About ResuMate</h2>
+
+        <p>
+            ResuMate helps candidates evaluate their resumes,
+            career readiness and job compatibility using AI.
+        </p>
+
+        <br>
+
+        <p>
+            The system identifies matching skills, missing skills,
+            ATS compatibility, strengths, weaknesses, and career
+            recommendations.
+        </p>
+
+        <br>
+
+        <p>
+            Built using HTML, CSS, JavaScript and AI technologies.
+        </p>
+
+    </div>
+
+</div>
+    <div id="loadingScreen" class="loading-screen">
+
+    <div class="loader"></div>
+
+    <h2>ResuMate is analyzing your profile...</h2>
+
+    <p>
+        Evaluating skills, recruiter readiness,
+        career potential and growth opportunities...
+    </p>
+
+</div>
+    <script src="config.js"></script>
+    <script src="auth.js"></script>
+    <script src="resume-utils.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
+
+This is Full Stack Code

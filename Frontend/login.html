@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - ResuMate</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="auth-body" data-auth-page="true">
+
+<main class="auth-shell">
+    <section class="auth-panel">
+        <div class="auth-brand">
+            <div class="brand-mark">R</div>
+            <div>
+                <h1>Welcome back</h1>
+                <p>Log in to continue using ResuMate.</p>
+            </div>
+        </div>
+
+        <form id="loginForm" class="auth-form" novalidate>
+            <div id="authMessage" class="auth-message" aria-live="polite"></div>
+
+            <label for="email">Email</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="you@example.com"
+                autocomplete="email">
+
+            <label for="password">Password</label>
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter your password"
+                autocomplete="current-password">
+
+            <button type="submit">
+                Login
+            </button>
+        </form>
+
+        <p class="auth-switch">
+            New to ResuMate?
+            <a href="signup.html">Create an account</a>
+        </p>
+    </section>
+</main>
+
+<script src="auth.js"></script>
+</body>
+</html>

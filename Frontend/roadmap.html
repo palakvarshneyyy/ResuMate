@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Career Roadmap</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body data-auth-required="true">
+
+<div class="container">
+
+<div class="page-auth-actions">
+    <span data-auth-email></span>
+    <button class="nav-logout" onclick="logout()">Logout</button>
+</div>
+
+<h1>🗺 Career Roadmap</h1>
+
+<div class="skill-box">
+    <div id="roadmapContent"></div>
+</div>
+
+<a href="results.html" class="view-btn">
+← Back to Dashboard
+</a>
+
+</div>
+
+<script src="auth.js"></script>
+<script>
+
+const data =
+JSON.parse(
+localStorage.getItem("analysisData")
+);
+
+if (!data || !data.roadmap) {
+    document.getElementById("roadmapContent").innerHTML = 
+    "<p>No roadmap data available. Please complete an analysis first.</p>";
+} else {
+
+    const steps =
+    data.roadmap.split(/\d+\.\s/).filter(step => step.trim());
+
+    let html = "<ol>";
+
+    steps.forEach(step => {
+        html += `<li>${step}</li>`;
+    });
+
+    html += "</ol>";
+
+    document.getElementById("roadmapContent").innerHTML = html;
+}
+
+</script>
+
+</body>
+</html>

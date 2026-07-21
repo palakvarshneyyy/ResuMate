@@ -1,0 +1,4 @@
+const CONFIG = {
+    OPENROUTER_API_KEY: "your_api_key_here",
+    OPENROUTER_MODEL: "google/gemini-2.5-flash-lite"
+};
