@@ -1,199 +1,154 @@
-# 🚀 ResumateAI
+🚀 ResuMateAI
 
-An AI-powered Resume Analyzer built with **Spring Boot, MySQL, HTML, CSS, and JavaScript**. ResumateAI helps users analyze resumes, calculate ATS scores, identify missing skills, generate AI-powered suggestions, and prepare for interviews.
+An AI-powered Resume Analyzer that helps job seekers improve their resumes with ATS analysis, AI-driven suggestions, interview preparation, and personalized career guidance.
+
+ 📌 Overview
+
+ResuMateAI is a full-stack web application that analyzes resumes against job descriptions and provides actionable insights to improve hiring chances. It combines AI-powered analysis with an intuitive dashboard to help users optimize their resumes and prepare for interviews.
 
 ---
 
-## ✨ Features
+ ✨ Features
 
+- 📄 Resume Upload & Analysis
+- 🎯 ATS Score Calculation
+- 🧠 AI-Powered Resume Suggestions
+- 📊 Skill Gap Analysis
+- 💼 Job Description Matching
+- 🎤 AI-Generated Interview Questions
+- 🛣️ Personalized Learning Roadmap
 - 🔐 User Authentication (Login & Signup)
-- 📄 Resume Upload (PDF & DOCX)
-- 🤖 AI-Powered Resume Analysis
-- 📊 ATS Score Generation
-- 🧠 AI Resume Suggestions
-- 💼 Career Roadmap
-- 🎯 Interview Preparation
-- 📱 Responsive UI
-- ⚡ Spring Boot REST APIs
-- 🗄️ MySQL Database
+- 📱 Responsive User Interface
 
 ---
 
-## 🛠️ Tech Stack
+ 🛠️ Tech Stack
 
 ### Frontend
 - HTML5
 - CSS3
-- JavaScript (Vanilla)
+- JavaScript (ES6)
 
 ### Backend
 - Spring Boot
-- Spring Data JPA
+- Java
 - Maven
 
 ### Database
 - MySQL
 
 ### AI Integration
-- OpenRouter API
+- OpenRouter API (LLM)
 
 ---
 
-## 📂 Project Structure
+ 📂 Project Structure
 
 ```
-ResumateAI/
+ResuMateAI
 │
-├── Backend/
-│   ├── Spring Boot
-│   ├── REST APIs
-│   └── MySQL Configuration
+├── Frontend
+│   ├── index.html
+│   ├── login.html
+│   ├── signup.html
+│   ├── results.html
+│   ├── interview.html
+│   ├── roadmap.html
+│   ├── script.js
+│   ├── results.js
+│   └── style.css
 │
-└── Frontend/
-    ├── HTML
-    ├── CSS
-    ├── JavaScript
-    └── Assets
+├── Backend
+│   ├── src/
+│   ├── pom.xml
+│   └── application.properties
+│
+└── README.md
 ```
 
 ---
 
-## ⚙️ Prerequisites
+ ⚙️ Installation
 
-Make sure the following software is installed:
-
-- Java 17+
-- Git
-- MySQL 8+
-- VS Code (Recommended)
-- Live Server Extension
-
----
-
-## 🚀 Installation
-
-### 1. Clone the repository
+### Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/ResumateAI.git
-cd ResumateAI
+git clone https://github.com/palakvarshneyyy/ResuMate.git
 ```
 
-### 2. Create Database
-
-Open MySQL and run:
-
-```sql
-CREATE DATABASE resumateai;
-```
-
-### 3. Configure Backend
-
-Create or update:
-
-```
-Backend/src/main/resources/application.properties
-```
-
-Add your configuration:
-
-```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/resumateai
-spring.datasource.username=root
-spring.datasource.password=YOUR_PASSWORD
-
-spring.jpa.hibernate.ddl-auto=update
-
-openrouter.api.key=YOUR_OPENROUTER_API_KEY
-```
-
----
-
-### 4. Run Backend
+### Navigate to the project
 
 ```bash
-cd Backend
-./mvnw spring-boot:run
-```
-
-Windows:
-
-```powershell
-.\mvnw.cmd spring-boot:run
-```
-
-Backend runs on:
-
-```
-http://localhost:8080
+cd ResuMate
 ```
 
 ---
 
-### 5. Run Frontend
+## Backend Setup
 
-Open the **Frontend** folder in VS Code.
+1. Open the Backend folder.
+2. Configure your MySQL database.
+3. Update `application.properties` with your database credentials.
+4. Add your OpenRouter API Key.
+5. Run the Spring Boot application.
 
-Open:
+---
+
+## Frontend Setup
+
+Simply open:
 
 ```
-index.html
+Frontend/index.html
 ```
 
-using **Live Server**.
-
-Frontend:
-
-```
-http://127.0.0.1:5500
-```
+or serve the frontend using VS Code Live Server.
 
 ---
 
-## 🧪 Demo Flow
+ 📸 Screenshots
 
-1. Sign Up
-2. Login
-3. Upload Resume
-4. Analyze Resume
-5. View ATS Score
-6. Review AI Suggestions
-7. Explore Career Roadmap
-8. Practice Interview Questions
+Add screenshots of:
 
----
+- Home Page
+- Resume Analysis Dashboard
+- ATS Score
+- Interview Questions
+- Learning Roadmap
 
-## 📸 Screenshots
-
-Add screenshots here:
-
-- Login Page
-- Dashboard
-- Resume Upload
-- Resume Analysis
-- Results Page
-- Career Roadmap
+*(Recommended image size: 1280×720)*
 
 ---
 
-## 🔮 Future Improvements
+🔮 Future Improvements
 
-- JWT Authentication
-- Analysis History
-- Cloud Deployment
-- Admin Dashboard
-- Email Notifications
-
----
-
-## 👨‍💻 Author
-
-**Abhay Pratap Singh Yadav**
-
-GitHub: https://github.com/yadavabhayy
+- Resume PDF Export
+- Dark Mode
+- Multiple Resume Management
+- Cover Letter Generator
+- AI Chat Assistant
+- Job Recommendation Engine
+- Resume Version Comparison
 
 ---
 
-## 📄 License
+🤝 Contributing
 
-This project is developed for the learning and portfolio purposes.
+Contributions are welcome.
+
+Feel free to fork the repository and submit a pull request for improvements or bug fixes.
+
+---
+
+👩‍💻 Author
+
+**Palak Varshney**
+
+GitHub:
+https://github.com/palakvarshneyyy
+
+---
+
+ ⭐ Support
+
+If you found this project useful, consider giving it a ⭐ on GitHub.
